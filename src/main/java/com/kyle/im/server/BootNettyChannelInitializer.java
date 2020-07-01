@@ -20,6 +20,7 @@ public class BootNettyChannelInitializer<SocketChannel> extends ChannelInitializ
          */
         ch.pipeline().addLast(new BootNettyChannelInboundHandlerAdapter());
 
+        ch.pipeline().addLast(new RabbitHandler());
         //为责任链加入过滤器
 //        ch.pipeline().addLast(new ServerChildHandler());
     }
