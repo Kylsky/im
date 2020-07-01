@@ -91,7 +91,7 @@ public class BootNettyChannelInboundHandlerAdapter extends ChannelInboundHandler
         String clientIp = insocket.getAddress().getHostAddress();
         //此处不能使用ctx.close()，否则客户端始终无法与服务端建立连接
         System.out.println("channelActive:"+clientIp+ctx.name());
-        BootNettyServer.clients.writeAndFlush("李柯为我知道是你\n");
+        BootNettyServer.clients.writeAndFlush("Connected to server\n");
 
     }
 
@@ -109,6 +109,7 @@ public class BootNettyChannelInboundHandlerAdapter extends ChannelInboundHandler
         String clientIp = insocket.getAddress().getHostAddress();
         ctx.close(); //断开连接时，必须关闭，否则造成资源浪费，并发量很大情况下可能造成宕机
         System.out.println("channelInactive:"+clientIp);
+        BootNettyServer.clients.writeAndFlush("Disconnected from server\n");
     }
 
     /**
