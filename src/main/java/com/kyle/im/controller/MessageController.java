@@ -27,7 +27,7 @@ public class MessageController {
     @ResponseBody
     @ApiOperation(value="测试用例，输入字符串作为消息")
     public String test(@ApiParam(value = "消息")@RequestParam String message){
-        rabbitTemplate.convertAndSend("im","消息推送");
+        rabbitTemplate.convertAndSend("im",message);
         return "Hello World";
     }
 }
